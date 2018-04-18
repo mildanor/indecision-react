@@ -1,0 +1,13 @@
+{
+  "name": "indecision-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:mildanor/indecision-react.git",
+  "author": "milda norkute <menulio.kiskis@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
+}
