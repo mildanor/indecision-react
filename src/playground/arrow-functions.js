@@ -1,5 +1,3 @@
-"use strict";
-
 /*ES 5
 const square = function (x) {
 return x * x;
@@ -20,9 +18,7 @@ const squareArrow = (x) => {
     return x * x
 };
 */
-var squareArrow = function squareArrow(x) {
-    return x * x;
-};
+const squareArrow = (x) => x * x;
 console.log(squareArrow(8));
 
 //Challenge - use arrow functions
@@ -37,9 +33,7 @@ const firstName = (fullName) => {
 */
 
 //SHORTER
-var firstName = function firstName(fullName) {
-    return fullName.split(' ')[0];
-};
+const firstName = (fullName) => fullName.split(' ')[0];
 
 //ORIGINAL
 /*
@@ -48,4 +42,4 @@ if (fullName){
    console.log(FirstName);
 }
 */
-console.log(firstName("Milda Norkute"));
+console.log(firstName("Milda Norkute")); 
