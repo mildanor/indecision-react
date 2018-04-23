@@ -6,12 +6,12 @@ console.log('App js is running');
 //Task 2:
 //1) only render subtitle if it exists with logical &&
 //2) if options.length > 0 show "Options" else message "No options" with ternery operator
-var object={
+const object={
     title:'Indecision App ',
     subtitle:'Let computer decide',
     options: ['One', 'Two']
 };
-var template = (
+const template = (
 <div>
 <h1>{object.title}</h1>
 {object.subtitle && <p> {object.subtitle}</p>}
@@ -28,7 +28,7 @@ var userLocation = 'Vilnius';
 */
 //true ? 'Milda : 'Anonymous - second is if condition doesnt pass
 //or you can have an object
-var user={
+const user={
     name:'Milda',
     age:26,
     location:'Geneva'
@@ -39,14 +39,14 @@ function getLocation(location){
     }
 }
 
-var templateTwo = (
+const templateTwo = (
     <div>
         <h1>{user.name ? user.name.toUpperCase(): 'Anonymous'}</h1>
         {user.age && user.age >= 18 && <p> Age: {user.age}</p>}
         {getLocation(user.location)}
         </div>
     );
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 
 //run this template (first arguement) in this element (second argument)
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);

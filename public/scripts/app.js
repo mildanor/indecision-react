@@ -78,4 +78,4 @@ var templateTwo = React.createElement(
 var appRoot = document.getElementById('app');
 
 //run this template (first arguement) in this element (second argument)
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
