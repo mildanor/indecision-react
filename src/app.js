@@ -19,33 +19,26 @@ const template = (
 </div>
 );
 
-
-/*
-Inject data
-var userName = Milda;
-var userAge = 27;
-var userLocation = 'Vilnius';
-*/
-//true ? 'Milda : 'Anonymous - second is if condition doesnt pass
-//or you can have an object
-const user={
-    name:'Milda',
-    age:26,
-    location:'Geneva'
+let count = 0;
+const addOne = () => {
+    console.log('addone')
 }
-function getLocation(location){
-    if(location){
-        return <p>Location: {location}</p>;
-    }
+const minusOne = () => {
+    console.log('minusone')
 }
-
+const reset = () => {
+    console.log('reset')
+}
 const templateTwo = (
     <div>
-        <h1>{user.name ? user.name.toUpperCase(): 'Anonymous'}</h1>
-        {user.age && user.age >= 18 && <p> Age: {user.age}</p>}
-        {getLocation(user.location)}
-        </div>
-    );
+        <h1>Count: {count} </h1>
+        <button onClick={addOne}> +1 </button>
+        <button onClick={minusOne}> -1 </button>
+        <button onClick={reset}> -1 </button>
+    </div>
+);
+console.log(templateTwo);
+
 const appRoot = document.getElementById('app');
 
 //run this template (first arguement) in this element (second argument)

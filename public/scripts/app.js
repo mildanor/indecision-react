@@ -1,112 +1,79 @@
 'use strict';
 
-/*ES 5
-const square = function (x) {
-return x * x;
+console.log('App js is running');
+//app.js in public folder will change automatically for us
+//Babel should convert the jsx which browsers doesnt understand
+
+//Task 1: Create app object title/subtitle, title subititle, render
+//Task 2:
+//1) only render subtitle if it exists with logical &&
+//2) if options.length > 0 show "Options" else message "No options" with ternery operator
+var object = {
+    title: 'Indecision App ',
+    subtitle: 'Let computer decide',
+    options: ['One', 'Two']
 };
-console.log(square(8));
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        object.title
+    ),
+    object.subtitle && React.createElement(
+        'p',
+        null,
+        ' ',
+        object.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        object.options.length > 0 ? "Options are: " : "No options",
+        ' '
+    )
+);
 
-OR
-
-function square(x) {
-return x * x;
+var count = 0;
+var addOne = function addOne() {
+    console.log('addone');
 };
-*/
-
-//ES 6 - arrow functions are always annoyimous
-//so you have to assign it to a variable
-/*
-const squareArrow = (x) => {
-    return x * x
+var minusOne = function minusOne() {
+    console.log('minusone');
 };
-*/
-var squareArrow = function squareArrow(x) {
-    return x * x;
+var reset = function reset() {
+    console.log('reset');
 };
-console.log(squareArrow(8));
+var templateTwo = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        'Count: ',
+        count,
+        ' '
+    ),
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        ' +1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        ' -1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        ' -1 '
+    )
+);
+console.log(templateTwo);
 
-//Challenge - use arrow functions
-//get FirstName('Milda Nor) -> "Milda":short and shorter versions
+var appRoot = document.getElementById('app');
 
-//LONGER
-/*
-
-const firstName = (fullName) => {
-    return fullName.split(' ')[0];
-};
-*/
-
-//SHORTER
-var firstName = function firstName(fullName) {
-    return fullName.split(' ')[0];
-};
-
-//ORIGINAL
-/*
-if (fullName){
-   var FirstName = fullName.split(' ')[0];
-   console.log(FirstName);
-}
-*/
-console.log(firstName("Milda Norkute"));
-
-//////// SECOND PART
-
-//arguments object is not bound with arrow functions
-//THIS keyword is not bound in arrow functions
-/*
-const add = function (a,b){
-    console.log(arguments);
-    return a+b;
-};
-*/
-
-/*
-const add = (a,b) =>{
-    return a+b;
-}
-console.log(add(55,1, 10, 20));
-*/
-
-var user = {
-    name: 'Milda',
-    cities: ['Vilnius', 'Ferney', 'London'],
-    //Better to use ES 5 inside object - as THIS value is bound to object property
-    // printplacesLived: function (){
-    // console.log(this.name);
-    // console.log(this.cities);
-    /*
-     const that = this;
-     that.cities.forEach(function(city){
-         console.log(that.name + ' has lived in ' + city);
-     });
-     */
-    printplacesLived: function printplacesLived() {
-        var _this = this;
-
-        return this.cities.map(function (city) {
-            return _this.name + ' has lived ' + city;
-        });
-        /*
-         this.cities.forEach((city)=> {
-           console.log(this.name + ' has lived in ' + city);
-         });
-          */
-    }
-};
-console.log(user.printplacesLived());
-
-//CHALLENGE 
-var multiplier = {
-    numbers: [1, 2, 3],
-    multiplyBy: 2,
-    multiply: function multiply() {
-        var _this2 = this;
-
-        return this.numbers.map(function (number) {
-            return _this2.multiplyBy * number;
-        });
-    }
-};
-
-console.log(multiplier.multiply());
+//run this template (first arguement) in this element (second argument)
+ReactDOM.render(templateTwo, appRoot);
