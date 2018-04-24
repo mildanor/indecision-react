@@ -4,10 +4,6 @@ console.log('App js is running');
 //app.js in public folder will change automatically for us
 //Babel should convert the jsx which browsers doesnt understand
 
-//Task 1: Create app object title/subtitle, title subititle, render
-//Task 2:
-//1) only render subtitle if it exists with logical &&
-//2) if options.length > 0 show "Options" else message "No options" with ternery operator
 var object = {
     title: 'Indecision App ',
     subtitle: 'Let computer decide',
@@ -28,11 +24,11 @@ var onFormSubmit = function onFormSubmit(e) {
     }
 };
 
+//create remove all button
 var remove = function remove() {
     object.options = [];
     renderFormApp();
 };
-//create remove all button
 
 var appRoot = document.getElementById('app');
 
@@ -58,9 +54,20 @@ var renderFormApp = function renderFormApp() {
             ' '
         ),
         React.createElement(
-            'p',
+            'ol',
             null,
-            object.options.length
+
+            //Challenge: map over object.options
+            object.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    'Option: ',
+                    option,
+                    ' '
+                );
+                renderFormApp();
+            })
         ),
         React.createElement(
             'form',
