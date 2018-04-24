@@ -11,43 +11,50 @@ const object={
     subtitle:'Let computer decide',
     options: ['One', 'Two']
 };
+//(e) object, fucntions for an event
+const onFormSubmit = (e) => {
+    //stop page refresh since it's single page app
+    e.preventDefault();
+    const option = e.target.elements.option.value;
+    renderFormApp();
+
+    if (option) {
+        object.options.push(option);
+        //wipe the value after taking it
+        e.target.elements.option.value = '';
+        renderFormApp();
+    }
+};
+
+const remove = () => {
+    object.options = [];
+    renderFormApp();
+}
+//create remove all button
+
+const appRoot = document.getElementById('app');
+
+const renderFormApp = () => {
 const template = (
 <div>
 <h1>{object.title}</h1>
 {object.subtitle && <p> {object.subtitle}</p>}
 <p>{object.options.length > 0 ? "Options are: " : "No options" } </p>
+<p>{object.options.length}</p>
+
+<form onSubmit = {onFormSubmit}>
+    <input type="text" name="option"/>
+    <button>Add option </button>
+</form>
+<button onClick={remove}> Remove</button>
 </div>
 );
 
-let count = 0;
-const addOne = () => {
-    count = count + 1;
-    //or count++
-    renderCounterApp();
-}
-const minusOne = () => {
-    count = count - 1;
-    renderCounterApp();
-}
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-}
-
-const appRoot = document.getElementById('app');
-
-const renderCounterApp = () => {
-    const templateTwo = (
-        <div>
-            <h1>Count: {count} </h1>
-            <button onClick={addOne}> +1 </button>
-            <button onClick={minusOne}> -1 </button>
-            <button onClick={reset}> "reset" </button>
-        </div>
-    );
-    //run this template (first arguement) in this element (second argument)
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
-//calling fucntion initialisez the app
+renderFormApp();
+
+
+//react dom events is useful
+//create render fucntion that render new jsx, call ir right away and also after the items added

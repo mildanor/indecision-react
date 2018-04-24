@@ -13,75 +13,76 @@ var object = {
     subtitle: 'Let computer decide',
     options: ['One', 'Two']
 };
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        object.title
-    ),
-    object.subtitle && React.createElement(
-        'p',
-        null,
-        ' ',
-        object.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        object.options.length > 0 ? "Options are: " : "No options",
-        ' '
-    )
-);
+//(e) object, fucntions for an event
+var onFormSubmit = function onFormSubmit(e) {
+    //stop page refresh since it's single page app
+    e.preventDefault();
+    var option = e.target.elements.option.value;
+    renderFormApp();
 
-var count = 0;
-var addOne = function addOne() {
-    count = count + 1;
-    //or count++
-    renderCounterApp();
+    if (option) {
+        object.options.push(option);
+        //wipe the value after taking it
+        e.target.elements.option.value = '';
+        renderFormApp();
+    }
 };
-var minusOne = function minusOne() {
-    count = count - 1;
-    renderCounterApp();
+
+var remove = function remove() {
+    object.options = [];
+    renderFormApp();
 };
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
-};
+//create remove all button
 
 var appRoot = document.getElementById('app');
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
+var renderFormApp = function renderFormApp() {
+    var template = React.createElement(
         'div',
         null,
         React.createElement(
             'h1',
             null,
-            'Count: ',
-            count,
+            object.title
+        ),
+        object.subtitle && React.createElement(
+            'p',
+            null,
+            ' ',
+            object.subtitle
+        ),
+        React.createElement(
+            'p',
+            null,
+            object.options.length > 0 ? "Options are: " : "No options",
             ' '
         ),
         React.createElement(
-            'button',
-            { onClick: addOne },
-            ' +1 '
+            'p',
+            null,
+            object.options.length
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSubmit },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add option '
+            )
         ),
         React.createElement(
             'button',
-            { onClick: minusOne },
-            ' -1 '
-        ),
-        React.createElement(
-            'button',
-            { onClick: reset },
-            ' "reset" '
+            { onClick: remove },
+            ' Remove'
         )
     );
-    //run this template (first arguement) in this element (second argument)
-    ReactDOM.render(templateTwo, appRoot);
+
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
-//calling fucntion initialisez the app
+renderFormApp();
+
+//react dom events is useful
+//create render fucntion that render new jsx, call ir right away and also after the items added
