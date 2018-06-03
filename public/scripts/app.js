@@ -7,8 +7,9 @@ console.log('App js is running');
 var object = {
     title: 'Indecision App ',
     subtitle: 'Let computer decide',
-    options: ['One', 'Two']
+    options: []
 };
+
 //(e) object, fucntions for an event
 var onFormSubmit = function onFormSubmit(e) {
     //stop page refresh since it's single page app
@@ -28,6 +29,13 @@ var onFormSubmit = function onFormSubmit(e) {
 var remove = function remove() {
     object.options = [];
     renderFormApp();
+};
+
+//make a decision function
+var MakeDecision = function MakeDecision() {
+    var randomNum = Math.floor(Math.random() * object.options.length);
+    var optionSelected = object.options[randomNum];
+    alert(optionSelected);
 };
 
 var appRoot = document.getElementById('app');
@@ -78,6 +86,11 @@ var renderFormApp = function renderFormApp() {
                 null,
                 'Add option '
             )
+        ),
+        React.createElement(
+            'button',
+            { disabled: object.options.length === 0, onClick: MakeDecision },
+            ' What should I do? '
         ),
         React.createElement(
             'button',

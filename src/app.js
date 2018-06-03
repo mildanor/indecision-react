@@ -5,8 +5,9 @@ console.log('App js is running');
 const object={
     title:'Indecision App ',
     subtitle:'Let computer decide',
-    options: ['One', 'Two']
+    options: []
 };
+
 //(e) object, fucntions for an event
 const onFormSubmit = (e) => {
     //stop page refresh since it's single page app
@@ -28,6 +29,13 @@ const remove = () => {
     renderFormApp();
 }
 
+//make a decision function
+const MakeDecision = () => {
+    const randomNum = Math.floor(Math.random() * object.options.length);
+    const optionSelected = object.options[randomNum];
+    alert(optionSelected);
+}
+
 
 const appRoot = document.getElementById('app');
 
@@ -38,6 +46,7 @@ const template = (
 <h1>{object.title}</h1>
 {object.subtitle && <p> {object.subtitle}</p>}
 <p>{object.options.length > 0 ? "Options are: " : "No options" } </p>
+
 <ol>
 {
     //Challenge: map over object.options
@@ -52,6 +61,7 @@ const template = (
     <input type="text" name="option"/>
     <button>Add option </button>
 </form>
+<button disabled={object.options.length === 0} onClick={MakeDecision}> What should I do? </button>
 <button onClick={remove}> Remove</button>
 </div>
 );
